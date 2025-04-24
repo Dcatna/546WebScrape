@@ -1,12 +1,44 @@
 from bs4 import BeautifulSoup
 import csv
 
-with open("courses.html", "r", encoding="utf-8") as f:
+with open("oipcourses.html", "r", encoding="utf-8") as f:
     soup = BeautifulSoup(f, "html.parser")
 
 course_blocks = soup.find_all("li", {"data-automation-id": "compositeContainer"})
 
+print(f"course_blocks length: {len(course_blocks)}\n")
+
+with open("oocourses.html", "r", encoding="utf-8") as f:
+    soup = BeautifulSoup(f, "html.parser")
+
+course_blocks = course_blocks + soup.find_all("li", {"data-automation-id": "compositeContainer"})
+
+print(f"course_blocks length: {len(course_blocks)}\n")
+
+with open("ohcourses.html", "r", encoding="utf-8") as f:
+    soup = BeautifulSoup(f, "html.parser")
+
+course_blocks = course_blocks + soup.find_all("li", {"data-automation-id": "compositeContainer"})
+
+print(f"course_blocks length: {len(course_blocks)}\n")
+
+with open("ccourses.html", "r", encoding="utf-8") as f:
+    soup = BeautifulSoup(f, "html.parser")
+
+course_blocks = course_blocks + soup.find_all("li", {"data-automation-id": "compositeContainer"})
+
+print(f"course_blocks length: {len(course_blocks)}\n")
+
+with open("wlcourses.html", "r", encoding="utf-8") as f:
+    soup = BeautifulSoup(f, "html.parser")
+
+course_blocks = course_blocks + soup.find_all("li", {"data-automation-id": "compositeContainer"})
+
+print(f"course_blocks length: {len(course_blocks)}\n")
+
 courses = []
+
+print(f"there are {len(course_blocks)} courses saved by the driver\n")
 
 for block in course_blocks:
     title_div = block.find("div", role="button")
